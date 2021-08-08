@@ -7,6 +7,7 @@ import com.recipe.recipemanagement.dto.RecipeRequest;
 import com.recipe.recipemanagement.mapper.RecipeRequestToRecipe;
 import com.recipe.recipemanagement.models.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/recipe")
+@CrossOrigin
 public class RecipeController {
 
     @Autowired

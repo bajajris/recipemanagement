@@ -5,7 +5,7 @@ import com.recipe.recipemanagement.Repositories.UserRepository;
 import com.recipe.recipemanagement.models.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+// import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,12 +16,12 @@ import static com.recipe.recipemanagement.config.ApplicationUserRole.*;
 @Repository("fake")
 public class FakeApplicationUserDaoService implements ApplicationUserDao {
 
-    private final PasswordEncoder passwordEncoder;
+    // private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
     @Autowired
-    public FakeApplicationUserDaoService(PasswordEncoder passwordEncoder, UserRepository userRepository) {
-        this.passwordEncoder = passwordEncoder;
+    public FakeApplicationUserDaoService(UserRepository userRepository) {
+        // this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
     }
 
