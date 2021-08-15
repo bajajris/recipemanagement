@@ -1,65 +1,90 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import { authCheckLoggedIn } from '../../store/actions/action';
-import classes from './Login.module.css'
-export const Login = (props) => {
+import classes from './SignUp.module.css'
+import { useHistory } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+export const SignUp = (props) => {
 
     const [formData, setFormData] = useState({
         username: '',
-        password: ''
+        password: '',
+        email: ''
         // rememberMe: false
     });
     const dispatch = useDispatch();
-
-    const loginUser = (e) => {
+    const history = useHistory();
+    const signupUser = (e) => {
         e.preventDefault();
         var bodyFormData = new FormData();
         bodyFormData.append('username', formData.username);
         bodyFormData.append('password', formData.password);
+        bodyFormData.append('email', formData.email);
+
         // bodyFormData.append('remember-me', formData.rememberMe);
 
-        var url = 'http://localhost:8080/login';
+        var url = 'http://localhost:8080/signup';
 
-        const login = async () => {
-            console.log("Here")
+        const signup = async () => {
+            console.log("Sign Up")
             axios({
                 method: "post",
                 url: url,
-                data: bodyFormData,
-                headers: { "Content-Type": "multipart/form-data" },
+                data: formData,
                 withCredentials: true
             })
                 .then(function (response) {
                     console.log("success")
                     console.log(response);
+                    toast.success('Login with the newly created account!!', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    history.push("/login")
                     dispatch(authCheckLoggedIn());
                 })
                 .catch(function (error) {
                     console.log("error")
+                    toast("Error encountered!!!");
                     console.log(error);
                 });
             // const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/teams`);
             // const data = await response.json();
             // setRecipes(data)
         }
-        login();
+        signup();
     }
 
-    const handleInputChange = (event)=>{
+    const handleInputChange = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-    
-        setFormData(prevState=>{
-            return {...prevState, [name]: value}
+
+        setFormData(prevState => {
+            return { ...prevState, [name]: value }
         });
     }
 
+    const notify = () => toast("Wow so easy !");
+
+
     return (
-        <div className={`container ${classes.LoginSection}`}>
+        <div className={`container ${classes.SignupSection}`}>
             <form className="form-signin">
-                <h2 className="form-signin-heading">Please login to RECIPIIS</h2>
+                <h2 className="form-signin-heading">Sign up for RECIPIIS</h2>
+                <p>
+                    <label htmlFor="email" className="sr-only">Email</label>
+                    <input onChange={(e) => handleInputChange(e)} value={formData.email} type="text" id="email" name="email" className="form-control" placeholder="Email" required=""
+                        autoFocus="" />
+                </p>
                 <p>
                     <label htmlFor="username" className="sr-only">Username</label>
                     <input onChange={(e) => handleInputChange(e)} value={formData.username} type="text" id="username" name="username" className="form-control" placeholder="Username" required=""
@@ -74,8 +99,11 @@ export const Login = (props) => {
                     Remember me?
                     <input onChange={(e) => handleInputChange(e)} value={formData.rememberMe} type="checkbox" id="remember-me" name="rememberMe" />
                 </p> */}
-                <button className="btn btn-lg btn-primary btn-block" onClick={(e) => loginUser(e)}>Login</button>
+                <button className="btn btn-lg btn-primary btn-block" onClick={(e) => signupUser(e)}>Sign Up</button>
+
             </form>
+
+           
         </div>
     );
 }

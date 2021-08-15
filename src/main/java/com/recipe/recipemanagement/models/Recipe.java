@@ -29,7 +29,7 @@ public class Recipe implements Serializable {
     @JoinColumn(referencedColumnName = "id", name = "ri_fk")
     private List<Ingredient> ingredients;
 
-    // @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    // @JoinColumn(referencedColumnName = "user_id", name = "ur_fk")
-    // private User recipeUser;
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @JoinColumn(referencedColumnName = "username", name = "recipeuser_fk")
+    private User recipeUser;
 }

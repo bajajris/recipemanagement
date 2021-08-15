@@ -1,0 +1,30 @@
+.Title {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+
+.divider {
+    display: flex;
+}
+
+.divider:before, .divider:after {
+    content: "";
+    flex: 1;
+}
+
+.donotcross {
+    overflow: hidden;
+    align-items: center;
+    background: #ffd500;
+    color: black;
+    height: 2em;
+    line-height: 2em;
+}
+
+.donotcross:before, .donotcross:after {
+    background: white;
+    padding: 50px 0;
+    height: 0;
+    transform: rotate(45deg);
+}

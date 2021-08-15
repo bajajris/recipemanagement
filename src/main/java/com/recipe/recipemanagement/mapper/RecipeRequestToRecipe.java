@@ -9,3 +9,4 @@ import org.mapstruct.Mapper;
 public interface RecipeRequestToRecipe {
     Recipe sourceToDestination(RecipeRequest source);
 }
+

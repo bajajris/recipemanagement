@@ -1,0 +1,18 @@
+.AboutSection {
+    width: 80%;
+}
+
+
+.AboutDiv {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 15px;
+    background: rgba(38, 163, 241, 0.575);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37);
+    backdrop-filter: blur( 4px);
+    -webkit-backdrop-filter: blur( 4px);
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18);
+}
+
+

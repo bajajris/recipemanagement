@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import classes from './Recipes.module.css'
-import { NavBar } from '../../components/NavBar/NavBar';
-import { Card } from 'react-bootstrap';
 import axios from 'axios';
+import { RecipeCard } from '../../components/RecipeCard/RecipeCard';
+import { Title } from '../../components/Title/Title';
 export const Recipes = () => {
 
     const [recipes, setRecipes] = useState([]);
@@ -30,28 +30,17 @@ export const Recipes = () => {
     if (recipes.length !== 0) {
         allRecipes = recipes.map((recipe, idx) => {
             return (
-                <div key={idx}>
-                    <Card style={{ width: '100%' }}>
-                        <Card.Body>
-                            <Card.Title>{recipe.recipeName}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">{recipe.recipeCategory}</Card.Subtitle>
-                            <Card.Text>
-                            {recipe.recipeProcedure}
-                            </Card.Text>
-                            {/* <Card.Link href="#">Card Link</Card.Link> */}
-                            {/* <Card.Link href="#">Another Link</Card.Link> */}
-                        </Card.Body>
-                    </Card>
-                </div>
+                <RecipeCard key={idx} {...recipe} />
             );
         })
     }
 
     return (
         <>
-            <div className={classes.Recipes}>
+            <section className={classes.RecipesSection}>
+                <Title name="All Recipes" />
                 {allRecipes}
-            </div>
+            </section>
         </>
     );
 }

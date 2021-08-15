@@ -15,7 +15,8 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
+
+import javax.servlet.http.HttpServletResponse;
 
 import com.recipe.recipemanagement.auth.ApplicationUserService;
 
@@ -39,31 +40,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
         .authorizeRequests()
-                .antMatchers("/", "index", "/css/*", "/js/*", "/recipe/*").permitAll()
+                .antMatchers("/", "index", "/css/*", "/js/*", "/recipe/all", "/user", "/signup", "/redirect").permitAll()
                 // .antMatchers("/api/**").hasRole(STUDENT.name())
                 .anyRequest()
                 .authenticated()
                 .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(
+                    (request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))                    .and()
                 .formLogin()
                     .loginPage("/login")
                     .permitAll()
-                    .defaultSuccessUrl("/", true)
+                    .defaultSuccessUrl("/home", true)
                     .passwordParameter("password")
                     .usernameParameter("username")
                 .and()
-                .rememberMe()
-                    .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
-                    .key("somethingverysecured")
-                    .rememberMeParameter("remember-me")
-                    .userDetailsService(applicationUserService)
-                .and()
+                // .rememberMe()
+                //     .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
+                //     .key("somethingverysecured")
+                //     .rememberMeParameter("remember-me")
+                //     .userDetailsService(applicationUserService)
+                // .and()
                 .logout()
                     .logoutUrl("/logout")
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // https://docs.spring.io/spring-security/site/docs/4.2.12.RELEASE/apidocs/org/springframework/security/config/annotation/web/configurers/LogoutConfigurer.html
                     .clearAuthentication(true)
                     .invalidateHttpSession(true)
-                    .deleteCookies("JSESSIONID", "remember-me")
-                    .logoutSuccessUrl("/login");
+                    .deleteCookies("JSESSIONID")
+                    .logoutSuccessUrl("/redirect");
     }
 
     @Bean
