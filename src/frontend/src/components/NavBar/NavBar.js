@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { authCheckLoggedIn } from '../../store/actions/action';
 import withErrorHandler from '../ErrorHandler/withErrorHandler';
 

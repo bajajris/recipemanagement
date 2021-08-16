@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {useRef, useState } from 'react';
 import { Button, Col, FloatingLabel, Form, FormControl, InputGroup, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import withErrorHandler from '../../components/ErrorHandler/withErrorHandler';
 import classes from './RecipeForm.module.css'
@@ -20,7 +20,7 @@ const RecipeForm = (props) => {
     });
 
     const inputRef = useRef();
-    const isLoggedIn = useSelector(state => state.isLoggedIn);
+    // const isLoggedIn = useSelector(state => state.isLoggedIn);
     const history = useHistory();
 
     const renderTooltip = (props) => (
