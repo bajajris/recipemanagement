@@ -38,7 +38,7 @@ public class UserController {
     @ResponseBody
     public Object currentUserName(Principal principal) {
         if(principal==null){
-            return new Response("loggedout");
+            return new Response(false);
         }
         return principal;
     }

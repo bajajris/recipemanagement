@@ -1,6 +1,6 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import { NavBar } from "../NavBar/NavBar";
+import NavBar from "../NavBar/NavBar";
 import classes from './Layout.module.css';
 export const Layout = (props) => {
 

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 const withErrorHandler = (WrappedComponent, axios) => {
+
     return class extends Component {
 
 
@@ -11,15 +13,20 @@ const withErrorHandler = (WrappedComponent, axios) => {
             });
             //before response is displayed
             this.resInterceptors = axios.interceptors.response.use(response => {
-                if (response.data.response === "loggedout") {
-                    //place your reentry code
-                    this.props.history.push("/login");
-                }
                 return response;
             }, error => {
-                if (error.response.status === 500) {
-                    this.props.history.push("/");
+               if(error.response.status===400){
+                    toast.error('Invalid Login!!!', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                 }
+                return "error";
             })
         }
 

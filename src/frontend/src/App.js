@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect } from "react";
 import { Layout } from "./components/Layout/Layout";
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Login } from './pages/Login/Login';
-import { Recipes } from './pages/Recipes/Recipes';
+import Login from './pages/Login/Login';
+import Recipes from './pages/Recipes/Recipes';
 import RecipeForm from './pages/RecipeForm/RecipeForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { authCheckLoggedIn } from './store/actions/action';
 import { About } from './pages/About/About';
-import { SignUp } from './pages/SignUp/SignUp';
+import SignUp from './pages/SignUp/SignUp';
 const App = () => {
 
   const dispatch = useDispatch();

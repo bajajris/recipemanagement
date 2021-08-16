@@ -3,3 +3,31 @@
     margin: 0 auto;
     padding: 1.5rem;
 }
+
+.approvelink{
+    color: white;
+    padding: 0.5rem;
+    border-radius: 7px;
+    background-color: rgb(2, 158, 2);
+    transition: all 0.3s;
+}
+
+.approvelink:hover{
+    cursor: pointer;
+    background-color: rgb(8, 92, 8);
+}
+
+
+.disapprovelink{
+    color: white;
+    padding: 0.5rem;
+    border-radius: 7px;
+    background-color: rgb(189, 60, 60);
+    transition: all 0.3s;
+}
+
+.disapprovelink:hover{
+    cursor: pointer;
+    background-color: rgb(233, 0, 0);
+}
+

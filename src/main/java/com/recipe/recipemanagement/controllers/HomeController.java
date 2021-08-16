@@ -3,6 +3,8 @@ package com.recipe.recipemanagement.controllers;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.recipe.recipemanagement.exceptions.ResourceNotFoundException;
+
 // import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,11 @@ public class HomeController {
     @GetMapping("home")
     public int getHome() {
         return HttpServletResponse.SC_OK;
+    }
+
+    @GetMapping("error")
+    public int getError() {
+        throw new ResourceNotFoundException();
     }
 
 }

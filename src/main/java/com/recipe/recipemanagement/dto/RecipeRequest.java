@@ -17,4 +17,5 @@ public class RecipeRequest {
     private String recipeCategory;
     private String recipeProcedure;
     private List<Ingredient> ingredients;
+    private String user;
 }

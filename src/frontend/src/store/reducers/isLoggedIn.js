@@ -5,6 +5,8 @@ const loggedIn = (action) => {
 }
 
 
+
+
 const isLoggedInReducer = (state = false, action) => {
     switch (action.type) {
         case 'LOG_IN':
@@ -16,6 +18,8 @@ const isLoggedInReducer = (state = false, action) => {
             return state;
     }
 }
+
+
 
 
 export default isLoggedInReducer;

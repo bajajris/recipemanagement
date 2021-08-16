@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Response {
 
-    private String response;
+    private boolean authenticated;
     
 }

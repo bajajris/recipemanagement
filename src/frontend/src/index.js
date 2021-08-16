@@ -8,6 +8,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { Provider } from 'react-redux'
 import isLoggedInReducer from './store/reducers/isLoggedIn';
 import thunk from 'redux-thunk';
+import userDataReducer from './store/reducers/userDataReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -21,7 +22,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //DISPATCH
 
 const rootReducer = combineReducers({
-  isLoggedIn: isLoggedInReducer
+  isLoggedIn: isLoggedInReducer,
+  userdata: userDataReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

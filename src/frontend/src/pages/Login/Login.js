@@ -1,9 +1,11 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import { authCheckLoggedIn } from '../../store/actions/action';
 import classes from './Login.module.css'
-export const Login = (props) => {
+import withErrorHandler from '../../components/ErrorHandler/withErrorHandler';
+import { toast } from 'react-toastify';
+const Login = (props) => {
 
     const [formData, setFormData] = useState({
         username: '',
@@ -33,11 +35,26 @@ export const Login = (props) => {
                 .then(function (response) {
                     console.log("success")
                     console.log(response);
+                    if (response !== 'error') {
+                        toast.success('Login Successful', {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    }
                     dispatch(authCheckLoggedIn());
                 })
                 .catch(function (error) {
                     console.log("error")
-                    console.log(error);
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    }
                 });
             // const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/teams`);
             // const data = await response.json();
@@ -46,13 +63,13 @@ export const Login = (props) => {
         login();
     }
 
-    const handleInputChange = (event)=>{
+    const handleInputChange = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-    
-        setFormData(prevState=>{
-            return {...prevState, [name]: value}
+
+        setFormData(prevState => {
+            return { ...prevState, [name]: value }
         });
     }
 
@@ -79,3 +96,5 @@ export const Login = (props) => {
         </div>
     );
 }
+
+export default withErrorHandler(Login, axios);

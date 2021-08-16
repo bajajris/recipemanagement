@@ -2,10 +2,11 @@ import axios from 'axios';
 import React from 'react'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { authCheckLoggedIn } from '../../store/actions/action';
+import withErrorHandler from '../ErrorHandler/withErrorHandler';
 
-export const NavBar = () => {
+const NavBar = () => {
 
     const isLoggedIn = useSelector(state => state.isLoggedIn);
 
@@ -21,6 +22,7 @@ export const NavBar = () => {
                 withCredentials: true
               }).then((res)=>{
                   dispatch(authCheckLoggedIn())
+                  window.location.reload();
                   console.log(res);
               }).catch((err)=>{
                   console.log("Here")
@@ -67,3 +69,5 @@ export const NavBar = () => {
         </section>
     );
 }
+
+export default withErrorHandler(NavBar, axios);

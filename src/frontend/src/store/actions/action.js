@@ -7,12 +7,20 @@ export const userlogin = (loggedIn) => {
     }
 }
 
+
+export const getUserData = (userdata) => {
+    return {
+        type: 'GET_USER_DATA',
+        userdata: userdata,
+    }
+}
+
 export const authCheckLoggedIn = () => {
 
     return dispatch => {
 
         let url = 'http://localhost:8080/user';
-        const test =async ()=>{
+        const loggedInCheck =async ()=>{
             axios({
                 method: 'get',
                 url: url,
@@ -21,19 +29,22 @@ export const authCheckLoggedIn = () => {
             }).then((res) => {
                 if (res.data.authenticated !== undefined && res.data.authenticated === true) {
                     console.log("Hello")
+                    dispatch(getUserData(res.data))
                     dispatch(userlogin(true))
                 } else {
                     console.log("Hello1314234")
-                    dispatch(userlogin(false))
+                    dispatch(getUserData(res.data))
+                    dispatch(userlogin( false))
                 }
                 console.log(res);
             }).catch((err) => {
                 console.log("Here")
                 console.error(err);
+                dispatch(getUserData({authenticated: false}))
                 dispatch(userlogin(false))
             })
         }
-        test()
+        loggedInCheck()
         // const token = localStorage.getItem('token');
         // if (!token) {
         //     dispatch(logout());

@@ -6,8 +6,9 @@ import classes from './SignUp.module.css'
 import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import withErrorHandler from '../../components/ErrorHandler/withErrorHandler';
 
-export const SignUp = (props) => {
+const SignUp = (props) => {
 
     const [formData, setFormData] = useState({
         username: '',
@@ -107,3 +108,6 @@ export const SignUp = (props) => {
         </div>
     );
 }
+
+
+export default withErrorHandler(SignUp, axios);
