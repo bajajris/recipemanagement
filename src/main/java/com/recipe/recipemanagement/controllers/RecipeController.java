@@ -1,7 +1,6 @@
 package com.recipe.recipemanagement.controllers;
 
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 import com.recipe.recipemanagement.Repositories.RecipeRepository;
@@ -9,7 +8,6 @@ import com.recipe.recipemanagement.Repositories.UserRepository;
 import com.recipe.recipemanagement.dto.RecipeRequest;
 import com.recipe.recipemanagement.mapper.RecipeRequestToRecipe;
 import com.recipe.recipemanagement.models.Recipe;
-import com.recipe.recipemanagement.models.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
