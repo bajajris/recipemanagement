@@ -63,7 +63,7 @@ const RecipeForm = (props) => {
 
     const submitRecipe = (e) => {
         e.preventDefault();
-        var url = 'http://localhost:8080/recipe/add';
+        var url = `${process.env.REACT_ROOT_API_URL}/recipe/add`;
 
         axios({
             method: "post",

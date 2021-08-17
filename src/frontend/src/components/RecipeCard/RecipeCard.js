@@ -11,7 +11,7 @@ const RecipeCard = (props) => {
 
     const approveRecipe = (e, recipeId) => {
         e.preventDefault();
-        var url = `http://localhost:8080/recipe/approve/${recipeId}`;
+        var url = `${process.env.REACT_ROOT_API_URL}/recipe/approve/${recipeId}`;
 
         axios({
             method: "post",
@@ -31,7 +31,7 @@ const RecipeCard = (props) => {
 
     const disapproveRecipe = (e, recipeId) => {
         e.preventDefault();
-        var url = `http://localhost:8080/recipe/disapprove/${recipeId}`;
+        var url = `${process.env.REACT_ROOT_API_URL}/recipe/disapprove/${recipeId}`;
 
         axios({
             method: "post",

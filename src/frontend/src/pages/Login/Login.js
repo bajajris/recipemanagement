@@ -21,7 +21,7 @@ const Login = (props) => {
         bodyFormData.append('password', formData.password);
         // bodyFormData.append('remember-me', formData.rememberMe);
 
-        var url = 'http://localhost:8080/login';
+        var url = `${process.env.REACT_ROOT_API_URL}/login`;
 
         const login = async () => {
             console.log("Here")

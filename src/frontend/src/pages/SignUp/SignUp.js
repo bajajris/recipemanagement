@@ -27,7 +27,7 @@ const SignUp = (props) => {
 
         // bodyFormData.append('remember-me', formData.rememberMe);
 
-        var url = 'http://localhost:8080/signup';
+        var url = `${process.env.REACT_ROOT_API_URL}/signup`;
 
         const signup = async () => {
             console.log("Sign Up")

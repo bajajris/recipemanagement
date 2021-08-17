@@ -13,7 +13,7 @@ const NavBar = () => {
     const dispatch = useDispatch();
 
     const logout = (e)=>{
-        let url = 'http://localhost:8080/logout';
+        let url = `${process.env.REACT_ROOT_API_URL}/logout`;
         const  logoutUser = async()=>{
             axios({
                 method: 'get',

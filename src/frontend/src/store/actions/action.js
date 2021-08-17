@@ -19,7 +19,7 @@ export const authCheckLoggedIn = () => {
 
     return dispatch => {
 
-        let url = 'http://localhost:8080/user';
+        let url = `${process.env.REACT_ROOT_API_URL}/user`;
         const loggedInCheck =async ()=>{
             axios({
                 method: 'get',

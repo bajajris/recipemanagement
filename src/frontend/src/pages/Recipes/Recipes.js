@@ -12,7 +12,7 @@ const Recipes = () => {
     const isLoggedIn = useSelector(state => state.isLoggedIn)
     const userdata = useSelector(state => state.userdata)
     useEffect(() => {
-        let url = "http://localhost:8080/recipe/all"
+        let url = `${process.env.REACT_ROOT_API_URL}/recipe/all`
         const fetchRecipes = async () => {
             axios({
                 method: 'get',
